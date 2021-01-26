@@ -58,11 +58,18 @@
     </div>
 
     <div>
+      <h2>Video Jump Controlls</h2>
       <ul id="array-rendering">
         <li
           v-for="videoDataPoint in videoDataPoints"
-          v-bind:key="videoDataPoint.id">
-          {{ videoDataPoint.text }}
+          v-bind:key="videoDataPoint.id"> 
+
+            <button
+              @click="handleStartSimulation(videoDataPoint.timestamp)"
+              class="bg-yellow-200 m-2 p-2">
+                {{ videoDataPoint.text }} - ({{ videoDataPoint.timestamp }})
+            </button>
+          
         </li>
       </ul>
 
@@ -102,13 +109,16 @@ export default {
       // Publish a message to the gut-cam channel
       channel.publish('status', 'play');
     }
+    
+    function VideoTimeJump(time) {
 
-
+    }
 
     return {
       videoUrl,
       videoDataPoints,
       handleStartSimulation,
+      VideoTimeJump,
     };
 
   }
