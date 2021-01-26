@@ -18,6 +18,10 @@ import { getVideoUrl } from "../api/videoApi.js";
 export default {
   setup() {
 
+    // Flag that records if a user has started the test
+    const startedFlag = ref(false);
+
+
     const status = ref("");
     const videoUrl = ref("");
     videoUrl.value = getVideoUrl();
@@ -49,6 +53,7 @@ export default {
     });
 
     return {
+      status,
       videoUrl,
     }
 
