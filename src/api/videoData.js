@@ -44,25 +44,11 @@ const data = [
     text: "Ok, I’ve taken care of that – I'll let you know when they’ve made a decision,...",
     timeCodeStart: 39,
     timeCodeEnd: 58,
-    code: "0.0.2",
+    code: "0.0.3",
     responses: [
       {
         id: "m_2_0",
         text: "Okay(?)",
-        promptId: "m_3",
-      }
-    ]
-  },
-  {
-    id: "m_3",
-    text: "Ok, I’ve taken care of that – I'll let you know when they’ve made a decision,...",
-    timeCodeStart: 39,
-    timeCodeEnd: 58,
-    code: "0.0.3",
-    responses: [
-      {
-        id: "m_3_0",
-        text: "Yes",
         promptId: "m_4",
       }
     ]
