@@ -62,14 +62,14 @@
       <ul id="array-rendering">
         <li
           v-for="videoDataPoint in videoDataPoints"
-          v-bind:key="videoDataPoint.id"> 
+          v-bind:key="videoDataPoint.id">
 
             <button
               @click="handleStartSimulation(videoDataPoint.timestamp)"
               class="bg-yellow-200 m-2 p-2">
                 {{ videoDataPoint.text }} - ({{ videoDataPoint.timestamp }})
             </button>
-          
+
         </li>
       </ul>
 
@@ -96,20 +96,25 @@ export default {
     videoUrl.value = getVideoUrl();
 
     //videoDataPoints.value = getVideoData();
+
+    var ably = new Ably.Realtime('BiSQUw.FNx0Ig:b_cUpgQ-rBUTDFBz');
+    var channel = ably.channels.get('holo-helper');
+
+    // This functions fires the ready event to all viewers
+    // The first step in the process
     function handleStartSimulation() {
-      let media = document.getElementById('video-controller-object')
-
-      media.play();
-
-      console.log('hello');
-
-      var ably = new Ably.Realtime('BiSQUw.FNx0Ig:b_cUpgQ-rBUTDFBz');
-      var channel = ably.channels.get('holo-helper');
-
       // Publish a message to the gut-cam channel
-      channel.publish('status', 'play');
+      channel.publish('status', 'ready');
+      console.log('Controller: Send Start Event');
     }
-    
+
+    //let media = document.getElementById('video-controller-object')
+
+    //  media.play();
+
+
+
+
     function VideoTimeJump(time) {
 
     }
