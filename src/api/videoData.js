@@ -10,12 +10,12 @@ const data = [
     responses: [
       {
         id: "m_0_0",
-        text: "No",
+        text: "Yes",
         promptId: "m_1",
       },
       {
         id: "m_0_1",
-        text: "Yes",
+        text: "No",
         promptId: "m_15",
       }
     ]
