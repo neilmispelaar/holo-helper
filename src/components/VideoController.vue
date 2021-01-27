@@ -79,7 +79,7 @@
                   class="flex flex-wrap my-2">
 
                   <!-- Stall -->
-                  <li>
+                  <li class="mt-1">
                     <button
                       @click="handleJumpAction('m_stall')"
                       class="border-2 border-blue-500 rounded-lg
@@ -93,7 +93,7 @@
                   <li
                     v-for="response in videoPrompt.responses"
                     v-bind:key="response.id"
-                    class="">
+                    class="mt-1">
                     <button
                       @click="handleJumpAction(response.promptId)"
                       class="border-2 border-green-500 rounded-lg
