@@ -30,15 +30,16 @@
       </div>
 
     </div>
-    <div v-else-if="status === 'STATUS_WAITING_FOR_CONTROLLER'">
+    <div v-else-if="status === 'STATUS_LISTENING_TO_CONTROLLER'">
       <video
       controls
       id="video-controller-object"
-      muted=true
-      :src="videoUrl">
+      :src="videoUrl"
+      class="mx-auto">
       </video>
 
-      <p class="my-10 font-semibold">Status: {{ status }}</p>
+    </div>
+    <div v-else-if="status === 'STATUS_ERROR'">
 
     </div>
 
@@ -56,13 +57,10 @@ export default {
     // Status for video viewer
     // STATUS_NOT_STARTED
     // STATUS_READY_TO_START
-    // STATUS_WAITING_FOR_CONTROLLER
+    // STATUS_LISTENING_TO_CONTROLLER
+    // STATUS_ERROR
 
     const status = ref("");
-
-
-
-
     const videoUrl = ref("");
 
 
@@ -78,7 +76,7 @@ export default {
     // Sets the status value so that the UI can
     // update
     function handleStartSimulation() {
-      status.value = 'STATUS_WAITING_FOR_CONTROLLER';
+      status.value = 'STATUS_LISTENING_TO_CONTROLLER';
     };
 
 
@@ -95,6 +93,25 @@ export default {
       let media = document.getElementById('video-controller-object');
 
       switch (message.data) {
+        // Signal sent to reset
+        // Which means stopping the video and returning it to
+        // the starting point
+        // And moving the status back to
+        case 'reset':
+
+          // If the media element is active then bring it to the start
+          if (media) {
+            // Bring the media back to the start
+            media.currentTime = 0;
+            media.pause();
+          }
+
+          // Update the status flag so that UI updates
+          status.value = 'STATUS_NOT_STARTED';
+
+          break;
+
+
         // The first step in the process
         // The controller presses the ready button to
         // start the show.
@@ -105,10 +122,49 @@ export default {
           status.value = 'STATUS_READY_TO_START';
 
           break;
+
+
         case 'play':
-          media.play();
-          status.value = "Play";
+
+          // Check that we are in the waiting for controller mode
+          // otherwise ignore random signals
+          if (status.value === 'STATUS_LISTENING_TO_CONTROLLER') {
+
+            if (media) {
+              try {
+                media.play();
+              }
+              catch {
+                // Throw an error
+                status.value = 'STATUS_ERROR';
+              }
+            }
+
+          }
+
           break;
+
+        case 'pause':
+
+          // Check that we are in the waiting for controller mode
+          // otherwise ignore random signals
+          if (status.value === 'STATUS_LISTENING_TO_CONTROLLER') {
+
+            if (media) {
+              try {
+                media.pause();
+              }
+              catch {
+                // Throw an error
+                status.value = 'STATUS_ERROR';
+              }
+            }
+
+          }
+
+          break;
+
+
         case 'Mangoes':
         case 'Papayas':
           console.log('Mangoes and papayas are $2.79 a pound.');
@@ -119,6 +175,40 @@ export default {
       }
 
     });
+
+    // Subscribe to time messages on channel
+    channel.subscribe('time', function(message) {
+      console.log("Message", message.data);
+
+      // Convert the message data into a string
+      const newTime = parseInt(message.data, 10);
+
+      // Check that we are in the waiting for controller mode
+      // otherwise ignore random signals
+      if (status.value === 'STATUS_LISTENING_TO_CONTROLLER') {
+
+        let media = document.getElementById('video-controller-object');
+
+        // Check that time interval is within the duration
+
+        if (media) {
+          try {
+            if (!isNaN(newTime)) {
+              media.currentTime = newTime;
+              media.play();
+            }
+          }
+          catch {
+            // Throw an error
+            status.value = 'STATUS_ERROR';
+          }
+        }
+
+
+      }
+
+    });
+
 
     return {
       status,
