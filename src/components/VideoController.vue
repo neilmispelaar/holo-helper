@@ -3,26 +3,15 @@
 
     <h1 class="sr-only">Video Controller</h1>
 
-    <section>
-      <h2 class="mb-2 text-gray-600 font-semibold">Controls:</h2>
-        <div class="">
+    <div class="flex flex-col md:flex-row bg-gray-100 rounded-lg mt-10 p-10">
+
+      <h2 class="mb-2 text-gray-600 font-semibold">Session controls:</h2>
+
+       <div class="">
           <button
             @click="handleStartSimulation"
             class="bg-green-400 p-5">
-            Start
-          </button>
-
-
-            <button
-            @click="handlePlayAction"
-            class="bg-green-700 p-5">
-            Play
-          </button>
-
-          <button
-            @click="handleStopAction"
-            class="bg-yellow-400 p-5">
-            Stop
+            Initialise
           </button>
 
           <button
@@ -32,11 +21,45 @@
           </button>
 
         </div>
+
+    </div>
+
+    <section>
+
+
     </section>
 
     <div class="flex flex-col md:flex-row bg-gray-100 rounded-lg mt-10 p-10">
 
       <div class="w-full md:w-3/4 order-2 md:order-1 md:pr-10">
+
+        <section>
+
+          <h2 class="mb-2 text-gray-600 font-semibold">Playback Controls:</h2>
+
+           <div class="mb-10">
+
+            <button
+              @click="handlePlayAction"
+              class="bg-green-700 p-5">
+              Play
+            </button>
+
+            <button
+              @click="handleStopAction"
+              class="bg-yellow-400 p-5 mx-5">
+              Stop
+            </button>
+
+             <button
+              @click="handleBeginningAction"
+              class="bg-yellow-600 p-5">
+              Go to Beginning
+            </button>
+
+          </div>
+
+        </section>
 
         <section>
           <h2 class="mb-2 text-gray-600 font-semibold">Prompt Controls:</h2>
@@ -194,6 +217,25 @@ export default {
       }
     }
 
+    // This functions fires the go back to beginning and pause event to all viewers
+    // The video should start pause and go to the beginning
+    const handleBeginningAction = () => {
+      // Publish a message to the gut-cam channel
+      channel.publish('status', 'beginning');
+      console.log('Controller: Send Beginning Event');
+
+      // Start playing the controller video
+      if (media) {
+        try {
+          media.currentTime = 0;
+          media.pause();
+        }
+        catch {
+          console.log('Controller: Error attempting to pause and return to beginning');
+        }
+      }
+    }
+
 
     // This functions fires the play event to all viewers
     // The video should start playing
@@ -245,6 +287,7 @@ export default {
       handlePlayAction,
       handleStopAction,
       handleJumpAction,
+      handleBeginningAction,
       handleStartSimulation,
       handleResetSimulation,
       findTimeByPromptId,

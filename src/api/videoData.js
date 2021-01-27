@@ -16,7 +16,7 @@ const data = [
       {
         id: "m_0_1",
         text: "Yes",
-        promptId: "m_15",
+        promptId: "m_4",
       }
     ]
   },
@@ -56,7 +56,7 @@ const data = [
   {
     id: "m_4",
     text: "Here are your top 5 options...",
-    timeCodeStart: 59,
+    timeCodeStart: 58,
     timeCodeEnd: 68,
     code: "0.1",
     responses: [

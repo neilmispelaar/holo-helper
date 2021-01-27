@@ -164,6 +164,27 @@ export default {
 
           break;
 
+         case 'beginning':
+
+          // Check that we are in the waiting for controller mode
+          // otherwise ignore random signals
+          if (status.value === 'STATUS_LISTENING_TO_CONTROLLER') {
+
+            if (media) {
+              try {
+                media.currentTime = 0;
+                media.pause();
+              }
+              catch {
+                // Throw an error
+                status.value = 'STATUS_ERROR';
+              }
+            }
+
+          }
+
+          break;
+
 
         case 'Mangoes':
         case 'Papayas':
