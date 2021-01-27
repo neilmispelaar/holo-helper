@@ -45,13 +45,7 @@ const data = [
     timeCodeStart: 39,
     timeCodeEnd: 58,
     code: "0.0.3",
-    responses: [
-      {
-        id: "m_2_0",
-        text: "Okay(?)",
-        promptId: "m_4",
-      }
-    ]
+    responses: []
   },
   {
     id: "m_4",
