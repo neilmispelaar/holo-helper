@@ -37,30 +37,36 @@
 
           <h2 class="mb-2 text-gray-600 font-semibold">Playback Controls:</h2>
 
-           <div class="mb-10 flex flex-nowrap">
+           <div class="mb-10 flex flex-wrap">
 
             <button
               @click="handlePlayAction"
-              class="bg-green-700 p-5 mr-5">
+              class="bg-green-700 p-5 mr-5 mt-2">
               Play
             </button>
 
             <button
               @click="handleStopAction"
-              class="bg-yellow-400 p-5 mr-5">
+              class="bg-yellow-400 p-5 mr-5 mt-2">
               Stop
             </button>
 
              <button
               @click="handleBeginningAction"
-              class="bg-yellow-600 p-5 mr-5">
+              class="bg-yellow-600 p-5 mr-5 mt-2">
               Go to Beginning
             </button>
 
              <button
               @click="handleJumpAction('m_404')"
-              class="bg-red-600 p-5 mr-5">
+              class="bg-red-600 p-5 mr-5 mt-2">
               404
+            </button>
+
+             <button
+              @click="handleJumpAction('m_4')"
+              class="bg-green-200 p-5 mr-5 mt-2">
+              Optimal Path Hub
             </button>
 
           </div>
