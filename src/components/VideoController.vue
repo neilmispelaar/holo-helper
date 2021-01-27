@@ -37,7 +37,7 @@
 
           <h2 class="mb-2 text-gray-600 font-semibold">Playback Controls:</h2>
 
-           <div class="mb-10">
+           <div class="mb-10 flex flex-nowrap">
 
             <button
               @click="handlePlayAction"
