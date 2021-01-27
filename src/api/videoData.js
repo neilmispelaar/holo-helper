@@ -312,7 +312,7 @@ const data = [
   {
     id: "m_16",
     text: "Ok. You have 12 minutes left to get to physio on time. Have a good day, Bob.",
-    timeCodeStart: 307,
+    timeCodeStart: 306,
     timeCodeEnd: 320,
     code: "6.4",
     responses: []
