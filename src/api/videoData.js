@@ -257,7 +257,7 @@ const data = [
       },
       {
         id: "m_13_1",
-        text: "No, don't want to explore other options",
+        text: "I'm not okay with this, explore other options",
         promptId: "m_4",
       }
     ]
