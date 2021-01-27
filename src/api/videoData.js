@@ -157,6 +157,11 @@ const data = [
       },
       {
         id: "m_8_1",
+        text: "Apply to Hoverschool",
+        promptId: "m_10",
+      },
+      {
+        id: "m_8_2",
         text: "Hovertaxi, Preschool",
         promptId: "m_17",
       }
