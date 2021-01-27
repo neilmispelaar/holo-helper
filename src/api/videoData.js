@@ -1,4 +1,4 @@
-const url = "/video/video.mp4";
+const url = "/video/video-holo.mp4";
 
 const data = [
   {

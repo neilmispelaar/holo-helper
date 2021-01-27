@@ -1,12 +1,41 @@
 <template>
   <div>
-  <video
-    controls
-    id="video-controller-object"
-    muted=true
-    :src="videoUrl">
-    </video>
-    <p>Status: {{ status }}</p>
+
+    <h2 class="sr-only">Video Feed</h2>
+
+    <div class="bg-gray-100 rounded-xl p-10">
+
+      <div v-if="status === 'STATUS_NOT_STARTED'">
+
+        <p>
+
+        </p>
+
+        <div class="flex">
+          Waiting for controller...
+          <div class="absolute ml-auto">
+            <span class="flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div v-else>
+        <video
+        controls
+        id="video-controller-object"
+        muted=true
+        :src="videoUrl">
+        </video>
+
+        <p class="my-10 font-semibold">Status: {{ status }}</p>
+
+      </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -18,12 +47,22 @@ import { getVideoUrl } from "../api/videoApi.js";
 export default {
   setup() {
 
-    // Flag that records if a user has started the test
-    const startedFlag = ref(false);
-
+    // Status for video viewer
+    // STATUS_NOT_STARTED
+    // STATUS_READY_TO_START
 
     const status = ref("");
+
+
+
+
     const videoUrl = ref("");
+
+
+    // Set the default status
+    status.value = 'STATUS_NOT_STARTED';
+
+
     videoUrl.value = getVideoUrl();
 
     var ably = new Ably.Realtime('BiSQUw.JLqmGQ:pbyh31gO6FC1HSzC');
