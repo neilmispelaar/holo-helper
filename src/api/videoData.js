@@ -172,7 +172,7 @@ const data = [
       {
         id: "m_9_0",
         text: "Yes, apply",
-        promptId: "m_9",
+        promptId: "m_10",
       },
       {
         id: "m_8_1",
