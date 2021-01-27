@@ -41,20 +41,26 @@
 
             <button
               @click="handlePlayAction"
-              class="bg-green-700 p-5">
+              class="bg-green-700 p-5 mr-5">
               Play
             </button>
 
             <button
               @click="handleStopAction"
-              class="bg-yellow-400 p-5 mx-5">
+              class="bg-yellow-400 p-5 mr-5">
               Stop
             </button>
 
              <button
               @click="handleBeginningAction"
-              class="bg-yellow-600 p-5">
+              class="bg-yellow-600 p-5 mr-5">
               Go to Beginning
+            </button>
+
+             <button
+              @click="handleJumpAction('m_404')"
+              class="bg-red-600 p-5 mr-5">
+              404
             </button>
 
           </div>
