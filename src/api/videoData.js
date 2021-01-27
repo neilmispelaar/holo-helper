@@ -253,7 +253,7 @@ const data = [
       {
         id: "m_13_0",
         text: "Yes, I'm okay with this",
-        promptId: "m_10",
+        promptId: "m_14",
       },
       {
         id: "m_13_1",
