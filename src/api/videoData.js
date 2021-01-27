@@ -360,8 +360,8 @@ const data = [
     id: "m_stall",
     text: "Stall",
     code: "500",
-    timeCodeStart: 302,
-    timeCodeEnd: 360,
+    timeCodeStart: 321,
+    timeCodeEnd: 350,
     responses: []
   }
 ]
