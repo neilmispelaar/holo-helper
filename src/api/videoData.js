@@ -227,7 +227,7 @@ const data = [
   {
     id: "m_12",
     text: "The working holiday visa will cost 250 credits...",
-    timeCodeStart: 206,
+    timeCodeStart: 205,
     timeCodeEnd: 226,
     code: "3.2",
     responses: [
