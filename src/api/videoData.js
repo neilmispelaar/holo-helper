@@ -16,7 +16,7 @@ const data = [
       {
         id: "m_0_1",
         text: "Yes",
-        promptId: "m_1",
+        promptId: "m_15",
       }
     ]
   },
